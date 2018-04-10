@@ -1,6 +1,6 @@
 .idea/
-tmp/
-inc/config.php
+src/tmp/
+src/inc/config.php
 .DS_Store
 srcdir.txt
 src/.DS_Store
