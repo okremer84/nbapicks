@@ -1,6 +1,6 @@
 # NBA Playoff Picks
 To start the docker image:
 
-Edit start.sh and change SRCDIR to your local directory
+Create a file named srcdir.txt and put the path to your local src directory inside.
 
-Run the start.sh
+Run start.sh
