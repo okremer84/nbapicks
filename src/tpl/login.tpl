@@ -11,5 +11,6 @@
         scope="public_profile,email"
         onlogin="checkLoginState();">
 </fb:login-button>
+<div class="g-signin2" data-onsuccess="onSignIn"></div>
 </body>
 </html>

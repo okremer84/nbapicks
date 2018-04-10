@@ -31,6 +31,7 @@ class Twig
         //$args['user'] = get user;
 
         $args['config']['fb_app_id'] = FB_APP_ID;
+        $args['config']['google_client_id'] = GOOGLE_CLIENT_ID;
         $rendered_tpl = $twig->render($template, $args);
         return $rendered_tpl;
     }

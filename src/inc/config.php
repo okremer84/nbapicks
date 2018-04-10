@@ -1,3 +1,5 @@
 <?php
 
 DEFINE('FB_APP_ID', 175458679770845);
+DEFINE('GOOGLE_CLIENT_ID', '459402434375-cojuvrq7uh094on0rq4sdlb4rjarbie0.apps.googleusercontent.com');
+DEFINE('GOOGLE_CLIENT_SECRET', 'HEKY3v3wr00uwYNNmdfIz2mq');
