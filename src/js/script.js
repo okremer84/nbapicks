@@ -1,6 +1,6 @@
 function statusChangeCallback(response) {
     if (response.status == "connected") {
-            // redirect to user bracket
+            // TODO: Move user to pick team name screen and save email in DB
             console.log("connected");
             break;
     }
@@ -11,6 +11,15 @@ function checkLoginState() {
         statusChangeCallback(response);
     });
 };
+
+function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    // TODO: Move user to pick team name screen and save email in DB
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
 
 $(document).ready(function () {
     FB.Event.subscribe('xfbml.render', function (response) {
