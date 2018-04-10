@@ -2,7 +2,10 @@ function statusChangeCallback(response) {
     if (response.status == "connected") {
             // TODO: Move user to pick team name screen and save email in DB
             console.log("connected");
-            break;
+            FB.api('/me?fields=email', function(response) {
+                // send email to API
+                console.log(response.email);
+            });
     }
 }
 
@@ -21,12 +24,10 @@ function onSignIn(googleUser) {
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
 
-$(document).ready(function () {
+$(window).on("load", function() {
     FB.Event.subscribe('xfbml.render', function (response) {
         FB.getLoginStatus(function (response) {
             statusChangeCallback(response);
-
         });
-
     });
 });
