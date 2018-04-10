@@ -30,6 +30,7 @@ class Twig
         // TODO: get user details here
         //$args['user'] = get user;
 
+        $args['config']['fb_app_id'] = FB_APP_ID;
         $rendered_tpl = $twig->render($template, $args);
         return $rendered_tpl;
     }
