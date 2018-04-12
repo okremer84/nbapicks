@@ -26,7 +26,6 @@ if (empty($_POST['team_name'])) {
     try {
         $stmt->execute([
             ':email' => $_SESSION['email'],
-            ':team_name' => $_POST['team_name'],
         ]);
     } catch (PDOException $e) {
         trigger_error($e->getMessage(), E_USER_WARNING);
