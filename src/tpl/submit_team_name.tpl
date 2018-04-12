@@ -38,7 +38,7 @@
     <img src="https://www.nbaplayoffpicks.com/images/nba_playoffs.png" class="logo">
     <div class="login-box">
         <form method="POST" action="/team_name.php">
-            <label for="team_name">Select your team name:</label>
+            <label for="team_name">Submit your nick name:</label>
             <input name="team_name" type="text" required {% if errors.team_name_missing %} style="background-color: red" {% endif %}>
             <input type="hidden" name="action" value="submit_team_name">
             <input type="submit">

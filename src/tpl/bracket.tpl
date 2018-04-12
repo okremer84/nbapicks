@@ -4,6 +4,7 @@
     <title>NBA Playoffs</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
     <script src="js/bracket.js"></script>
+    <script>user_email = "{{ user.email }}"</script>
     <style>
         body {
             font-family: arial, helvetica, sans-serif;
@@ -797,17 +798,8 @@
                     </span>
                 </div>
                 <strong>Finals MVP</strong><br/>
-                <select>
-                    <option value="volvo">omer</option>
-                    <option value="saab">is</option>
-                    <option value="opel">a</option>
-                    <option value="audi">weirdo</option>
-                </select>
-                <select>
-                    <option value="volvo">pay</option>
-                    <option value="saab">me</option>
-                    <option value="opel">money</option>
-                    <option value="audi">please</option>
+                <select id="mvp_dropdown" onchange="send_mvp(); return false;">
+                    <option disabled selected>Choose finals MVP</option>
                 </select>
             </div>
 
