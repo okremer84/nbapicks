@@ -32,10 +32,10 @@ next_spot[29] = 30;
 
 $(document).ready(function(){
 
-  // click handler for a pick that is populated (it's populated when it has the data-team attribute)
-  $(".pick[data-team]").on("click.pick_made", function(){
-      handle_spot_clicked($(this));
-  });
+    // click handler for a pick that is populated (it's populated when it has the data-team attribute)
+    $(".pick[data-team]").on("click.pick_made", function(){
+        handle_spot_clicked($(this));
+    });
 
     $.ajax({
         url: "/api/api_handler.php",
@@ -56,13 +56,29 @@ function populate_bracket(picks){
             var spot = key.substr(5);
             var team = picks[key];
             console.log(spot, team);
-            fill_spot(spot, team);
+            if(team) {
+                fill_spot(spot, team);
+            }
         }
     }
 }
 
 function fill_spot(spot, team){
     if(spot == "31"){
+        // Get championship pick
+        var champion_pick = $(".champion-pick").attr("data-team");
+        $.ajax({
+            url: "/api/api_handler.php",
+            method: "POST",
+            data: {
+                "team": champion_pick,
+                "action": 'get_players_for_team',
+            }
+        }).done(function(players) {
+            players = $.parseJSON(players);
+            populate_mvp_dropdown(players);
+            $("#mvp_dropdown").val(team);
+        });
         return;
     }
 
@@ -127,11 +143,7 @@ function handle_spot_clicked($spot){
             }
         }).done(function(players) {
             players = $.parseJSON(players);
-            for (var i = 0, len = players.length; i < len; i++) {
-                player_data = players[i];
-                player = "<option value='" + player_data['id'] + "'>" + player_data['name'] + "</option>";
-                $("#mvp_dropdown").append(player);
-            }
+            populate_mvp_dropdown(players);
         });
     }
 }
@@ -149,5 +161,12 @@ function send_mvp() {
             "action": 'save_pick',
         }
     });
+}
 
+function populate_mvp_dropdown(players){
+    for (var i = 0, len = players.length; i < len; i++) {
+        player_data = players[i];
+        player = "<option value='" + player_data['id'] + "'>" + player_data['name'] + "</option>";
+        $("#mvp_dropdown").append(player);
+    }
 }
