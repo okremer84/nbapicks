@@ -22,6 +22,17 @@ if (empty($_POST['team_name'])) {
         header('Location: /index.php');
     }
 
+    $stmt = $db->prepare("INSERT INTO pick (user_id) VALUES ((SELECT id FROM user WHERE email = :email))");
+    try {
+        $stmt->execute([
+            ':email' => $_SESSION['email'],
+            ':team_name' => $_POST['team_name'],
+        ]);
+    } catch (PDOException $e) {
+        trigger_error($e->getMessage(), E_USER_WARNING);
+        header('Location: /index.php');
+    }
+
     $_SESSION['team_name'] = $_POST['team_name'];
     header('Location: /index.php');
 }
