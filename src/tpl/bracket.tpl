@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>NBA Playoffs</title>
-    <script src="js/bracket.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+    <script src="js/bracket.js"></script>
     <style>
         body {
             font-family: arial, helvetica, sans-serif;
@@ -25,6 +25,15 @@
         .bracket-game {
             max-width: 125px;
             margin: 10px 0;
+        }
+
+        .champion-pick{
+            margin: 5px auto 15px;
+            width: 110px;
+            border: 1px solid #AAA;
+            padding: 5px;
+            background-color: #f5f5f5;
+            vertical-align: middle;
         }
 
         .pick {
@@ -53,6 +62,10 @@
             padding-left: 10px;
             padding-right: 10px;
             background: #EEE;
+        }
+
+        .pick[data-team]:hover{
+            cursor: pointer;
         }
 
         /*
@@ -213,6 +226,8 @@
         .team-logo {
             display: inline-block;
             vertical-align: middle;
+            height: 30px;
+            width: 30px;
         }
 
         .tiny-number {
@@ -403,26 +418,20 @@
                 </div>
                 <div class="round r-of-2">
                     <div class="bracket-game">
-                        <div class="pick top loss hidden">
+                        <div class="pick top loss" data-spot="16">
 							<span class="tiny-number">
-								[1]
 							</span>
                             <div class="team-logo">
-                                <img src="images/Golden_State_Warriors.png"/>
                             </div>
                             <span class="team-name">
-								 GSW
 							</span>
                         </div>
-                        <div class="pick bot win hidden">
+                        <div class="pick bot win" data-spot="17">
 							<span class="tiny-number">
-								[1]
-							</span>
+                            </span>
                             <div class="team-logo">
-                                <img src="images/Golden_State_Warriors.png"/>
                             </div>
                             <span class="team-name">
-								 GSW
 							</span>
 
                         </div>
@@ -492,26 +501,20 @@
                 </div>
                 <div class="round r-of-2">
                     <div class="bracket-game">
-                        <div class="pick top loss hidden">
+                        <div class="pick top loss" data-spot="18">
 							<span class="tiny-number">
-								[1]
 							</span>
                             <div class="team-logo">
-                                <img src="images/Golden_State_Warriors.png"/>
                             </div>
                             <span class="team-name">
-								 GSW
 							</span>
                         </div>
-                        <div class="pick bot win hidden">
+                        <div class="pick bot win" data-spot="19">
 							<span class="tiny-number">
-								[1]
 							</span>
                             <div class="team-logo">
-                                <img src="images/Golden_State_Warriors.png"/>
                             </div>
                             <span class="team-name">
-								 GSW
 							</span>
                         </div>
                     </div>
@@ -533,26 +536,20 @@
             </div>
             <div class="center-row-wrap">
                 <div class="bracket-game center-row">
-                    <div class="pick top win hidden">
+                    <div class="pick top win" data-spot="24">
 						<span class="tiny-number">
-							[1]
 						</span>
                         <div class="team-logo">
-                            <img src="images/Golden_State_Warriors.png"/>
                         </div>
                         <span class="team-name">
-							 GSW
 						</span>
                     </div>
-                    <div class="pick bot loss hidden">
+                    <div class="pick bot loss" data-spot="25">
 						<span class="tiny-number">
-							[1]
 						</span>
                         <div class="team-logo">
-                            <img src="images/Golden_State_Warriors.png"/>
                         </div>
                         <span class="team-name">
-							 GSW
 						</span>
                     </div>
                 </div>
@@ -560,26 +557,20 @@
                     <div class="bottom-line"></div>
                 </div>
                 <div class="bracket-game center-row">
-                    <div class="pick top win hidden">
+                    <div class="pick top win" data-spot="28">
 						<span class="tiny-number">
-							[1]
 						</span>
                         <div class="team-logo">
-                            <img src="images/Golden_State_Warriors.png"/>
                         </div>
                         <span class="team-name">
-							 GSW
 						</span>
                     </div>
-                    <div class="pick bot loss hidden">
+                    <div class="pick bot loss" data-spot="29">
 						<span class="tiny-number">
-							[1]
 						</span>
                         <div class="team-logo">
-                            <img src="images/Golden_State_Warriors.png"/>
                         </div>
                         <span class="team-name">
-							 GSW
 						</span>
                     </div>
                 </div>
@@ -587,26 +578,20 @@
                     <div class="bottom-line"></div>
                 </div>
                 <div class="bracket-game center-row">
-                    <div class="pick top win hidden">
+                    <div class="pick top win" data-spot="26">
 						<span class="tiny-number">
-							[1]
 						</span>
                         <div class="team-logo">
-                            <img src="images/Golden_State_Warriors.png"/>
                         </div>
                         <span class="team-name">
-							 GSW
 						</span>
                     </div>
-                    <div class="pick bot loss hidden">
+                    <div class="pick bot loss" data-spot="27">
 						<span class="tiny-number">
-							[1]
 						</span>
                         <div class="team-logo">
-                            <img src="images/Golden_State_Warriors.png"/>
                         </div>
                         <span class="team-name">
-							 GSW
 						</span>
                     </div>
                 </div>
@@ -631,26 +616,20 @@
             <div class="top-right">
                 <div class="round r-of-2">
                     <div class="bracket-game">
-                        <div class="pick top loss hidden">
+                        <div class="pick top loss" data-spot="20">
 							<span class="tiny-number">
-								[1]
 							</span>
                             <div class="team-logo">
-                                <img src="images/Golden_State_Warriors.png"/>
                             </div>
                             <span class="team-name">
-								 GSW
 							</span>
                         </div>
-                        <div class="pick bot win hidden">
+                        <div class="pick bot win" data-spot="21">
 							<span class="tiny-number">
-								[1]
 							</span>
                             <div class="team-logo">
-                                <img src="images/Golden_State_Warriors.png"/>
                             </div>
                             <span class="team-name">
-								 GSW
 							</span>
                         </div>
                     </div>
@@ -667,97 +646,9 @@
                 </div>
                 <div class="round r-of-4">
                     <div class="bracket-game">
-                        <div class="pick top loss">
+                        <div class="pick top loss" data-spot="8" data-team="TOR">
 							<span class="tiny-number">
 								[1]
-							</span>
-                            <div class="team-logo">
-                                <img src="images/Boston_Celtics.png"/>
-                            </div>
-                            <span class="team-name">
-								 BOS
-							</span>
-                        </div>
-                        <div class="pick bot win">
-							<span class="tiny-number">
-								[8]
-							</span>
-                            <div class="team-logo">
-                                <img src="images/Chicago_Bulls.png"/>
-                            </div>
-                            <span class="team-name">
-								 CHI
-							</span>
-                        </div>
-                    </div>
-                    <div class="bracket-game cont">
-                        <div class="pick top loss">
-					  	<span class="tiny-number">
-							[4]
-						</span>
-                            <div class="team-logo">
-                                <img src="images/Washington_Wizards.png"/>
-                            </div>
-                            <span class="team-name">
-							 WAS
-						</span>
-                        </div>
-                        <div class="pick bot win">
-					  	<span class="tiny-number">
-							[5]
-						</span>
-                            <div class="team-logo">
-                                <img src="images/Atlanta_Hawks.png"/>
-                            </div>
-                            <span class="team-name">
-							 ATL
-						</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="bottom-right">
-                <div class="round r-of-2">
-                    <div class="bracket-game">
-                        <div class="pick top loss hidden">
-							<span class="tiny-number">
-								[1]
-							</span>
-                            <div class="team-logo">
-                                <img src="images/Golden_State_Warriors.png"/>
-                            </div>
-                            <span class="team-name">
-								 GSW
-							</span>
-                        </div>
-                        <div class="pick bot win hidden">
-							<span class="tiny-number">
-								[1]
-							</span>
-                            <div class="team-logo">
-                                <img src="images/Golden_State_Warriors.png"/>
-                            </div>
-                            <span class="team-name">
-								 GSW
-							</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="connectors r-of-2">
-                    <div class="top-line"></div>
-                    <div class="clear"></div>
-                    <div class="bottom-line"></div>
-                    <div class="clear"></div>
-                    <div class="vert-line"></div>
-                    <div class="clear"></div>
-                    <div class="next-line"></div>
-                    <div class="clear"></div>
-                </div>
-                <div class="round r-of-4">
-                    <div class="bracket-game">
-                        <div class="pick top win">
-						  <span class="tiny-number">
-								[3]
 							</span>
                             <div class="team-logo">
                                 <img src="images/Toronto_Raptors.png"/>
@@ -766,22 +657,22 @@
 								 TOR
 							</span>
                         </div>
-                        <div class="pick bot loss">
-						  <span class="tiny-number">
-								[6]
+                        <div class="pick bot win" data-spot="9" data-team="WAS">
+							<span class="tiny-number">
+								[8]
 							</span>
                             <div class="team-logo">
-                                <img src="images/Milwaukee_Bucks.png"/>
+                                <img src="images/Washington_Wizards.png"/>
                             </div>
                             <span class="team-name">
-								 MIL
+								 WAS
 							</span>
                         </div>
                     </div>
                     <div class="bracket-game cont">
-                        <div class="pick top loss">
+                        <div class="pick top loss" data-spot="10" data-team="CLE">
 					  	<span class="tiny-number">
-							[2]
+							[4]
 						</span>
                             <div class="team-logo">
                                 <img src="images/Cleveland_Cavaliers.png"/>
@@ -790,15 +681,97 @@
 							 CLE
 						</span>
                         </div>
-                        <div class="pick bot win">
+                        <div class="pick bot win" data-spot="11" data-team="IND">
 					  	<span class="tiny-number">
-							[7]
+							[5]
 						</span>
                             <div class="team-logo">
                                 <img src="images/Indiana_Pacers.png"/>
                             </div>
                             <span class="team-name">
 							 IND
+						</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-right">
+                <div class="round r-of-2">
+                    <div class="bracket-game">
+                        <div class="pick top loss" data-spot="22">
+							<span class="tiny-number">
+							</span>
+                            <div class="team-logo">
+                            </div>
+                            <span class="team-name">
+							</span>
+                        </div>
+                        <div class="pick bot win" data-spot="23">
+							<span class="tiny-number">
+							</span>
+                            <div class="team-logo">
+                            </div>
+                            <span class="team-name">
+							</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="connectors r-of-2">
+                    <div class="top-line"></div>
+                    <div class="clear"></div>
+                    <div class="bottom-line"></div>
+                    <div class="clear"></div>
+                    <div class="vert-line"></div>
+                    <div class="clear"></div>
+                    <div class="next-line"></div>
+                    <div class="clear"></div>
+                </div>
+                <div class="round r-of-4">
+                    <div class="bracket-game">
+                        <div class="pick top win" data-spot="12" data-team="PHI">
+						  <span class="tiny-number">
+								[3]
+							</span>
+                            <div class="team-logo">
+                                <img src="images/Philadelphia_76ers.png"/>
+                            </div>
+                            <span class="team-name">
+								 PHI
+							</span>
+                        </div>
+                        <div class="pick bot loss" data-spot="13" data-team="MIA">
+						  <span class="tiny-number">
+								[6]
+							</span>
+                            <div class="team-logo">
+                                <img src="images/Miami_Heat.png"/>
+                            </div>
+                            <span class="team-name">
+								 MIA
+							</span>
+                        </div>
+                    </div>
+                    <div class="bracket-game cont">
+                        <div class="pick top loss" data-spot="14" data-team="BOS">
+					  	<span class="tiny-number">
+							[2]
+						</span>
+                            <div class="team-logo">
+                                <img src="images/Boston_Celtics.png"/>
+                            </div>
+                            <span class="team-name">
+							 BOS
+						</span>
+                        </div>
+                        <div class="pick bot win" data-spot="15" data-team="MIL">
+					  	<span class="tiny-number">
+							[7]
+						</span>
+                            <div class="team-logo">
+                                <img src="images/Milwaukee_Bucks.png"/>
+                            </div>
+                            <span class="team-name">
+							 MIL
 						</span>
                         </div>
                     </div>
@@ -814,6 +787,15 @@
     <div class="center-text bottom-text">
         <div class="your-team-name">
             <div class="margin-auto">
+                <strong>Finals Winner</strong><br/>
+                <div class="champion-pick" data-spot="30" data-team="BOS">
+                    <span class="tiny-number">
+                    </span>
+                    <div class="team-logo">
+                    </div>
+                    <span class="team-name">
+                    </span>
+                </div>
                 <strong>Finals MVP</strong><br/>
                 <select>
                     <option value="volvo">omer</option>
@@ -834,6 +816,7 @@
     <div class="right-text">
     </div>
 </div>
+
 
 
 </body>
