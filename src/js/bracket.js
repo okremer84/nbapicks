@@ -37,8 +37,50 @@ $(document).ready(function(){
       handle_spot_clicked($(this));
   });
 
+    $.ajax({
+        url: "/api/api_handler.php",
+        method: "POST",
+        data: {
+            "action": 'get_picks',
+            "email": user_email
+        }
+    }).done(function (picks) {
+        populate_bracket(($.parseJSON(picks))[0]);
+    });
+
 });
 
+function populate_bracket(picks){
+    for (var key in picks) {
+        if(key.startsWith("spot_")){
+            var spot = key.substr(5);
+            var team = picks[key];
+            console.log(spot, team);
+            fill_spot(spot, team);
+        }
+    }
+}
+
+function fill_spot(spot, team){
+    if(spot == "31"){
+        return;
+    }
+
+    // Get team's logo
+    var logo_url = $(".pick[data-team='" + team + "'] img").prop('src');
+
+    // Get the spot to insert the team
+    var $insert_spot = $(".pick[data-spot='" + spot + "'], .champion-pick[data-spot='" + spot + "']");
+    $insert_spot.attr("data-team", team);
+    $insert_spot.find(".team-logo").html("<img src='" + logo_url + "'>");
+    $insert_spot.find(".team-name").html(team);
+
+    // add click handler on the spot
+    $insert_spot.off("click.pick_made");
+    $insert_spot.on("click.pick_made", function(){
+        handle_spot_clicked($(this));
+    });
+}
 
 function handle_spot_clicked($spot){
     // Get the team clicked
