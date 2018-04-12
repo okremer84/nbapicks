@@ -37,11 +37,12 @@
 <div class="home-wrapper">
     <img src="https://www.nbaplayoffpicks.com/images/nba_playoffs.png" class="logo">
     <div class="login-box">
-        <form method="POST" target="/api/api_handler.php">
+        <form method="POST" action="/team_name.php">
             <label for="team_name">Select your team name:</label>
-            <input name="team_name">
+            <input name="team_name" type="text" required {% if errors.team_name_missing %} style="background-color: red" {% endif %}>
             <input type="hidden" name="action" value="submit_team_name">
             <input type="submit">
+            {% if errors.team_name_missing %}<br/><small>Don't forget your team name!</small>{% endif %}
         </form>
     </div>
 
