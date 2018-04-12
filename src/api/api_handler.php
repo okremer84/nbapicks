@@ -96,6 +96,7 @@ if ($action == "save_login") {
         '28' => 'spot_28',
         '29' => 'spot_29',
         '30' => 'spot_30',
+        '31' => 'spot_31',
     ];
 
     if (!isset($column_name_whitelist[$_POST['spot']])) {
@@ -152,7 +153,7 @@ if ($action == "save_login") {
 
     $db = DB::get_db();
 
-    $stmt = $db->prepare('SELECT player.name FROM player JOIN team ON player.team_id = team.id AND team.abbreviation = :abbreviation');
+    $stmt = $db->prepare('SELECT player.name, player.id FROM player JOIN team ON player.team_id = team.id AND team.abbreviation = :abbreviation');
     try {
         $stmt->execute([
             ':abbreviation' => $_POST['team'],
@@ -163,7 +164,7 @@ if ($action == "save_login") {
         die();
     }
 
-    $picks = $stmt->fetchAll(PDO::FETCH_COLUMN);
+    $picks = $stmt->fetchAll();
     echo json_encode($picks);
 } else {
     echo "failed";

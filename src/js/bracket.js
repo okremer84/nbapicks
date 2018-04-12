@@ -51,7 +51,16 @@ function handle_spot_clicked($spot){
     var logo_url = $spot.find(".team-logo img").prop('src');
 
     // ajax call
-    //todo
+    $.ajax({
+        url: "/api/api_handler.php",
+        method: "POST",
+        data: {
+            "email": user_email,
+            "team": team_clicked,
+            "spot": new_spot,
+            "action": 'save_pick',
+        }
+    });
 
     // update ui
     // add team as data attribute of new spot
@@ -65,4 +74,38 @@ function handle_spot_clicked($spot){
     $new_spot.on("click.pick_made", function(){
         handle_spot_clicked($(this));
     });
+
+    if (new_spot == '30') {
+        $.ajax({
+            url: "/api/api_handler.php",
+            method: "POST",
+            data: {
+                "team": team_clicked,
+                "action": 'get_players_for_team',
+            }
+        }).done(function(players) {
+            players = $.parseJSON(players);
+            for (var i = 0, len = players.length; i < len; i++) {
+                player_data = players[i];
+                player = "<option value='" + player_data['id'] + "'>" + player_data['name'] + "</option>";
+                $("#mvp_dropdown").append(player);
+            }
+        });
+    }
+}
+
+function send_mvp() {
+    var selected_id = $("#mvp_dropdown").val();
+    // ajax call
+    $.ajax({
+        url: "/api/api_handler.php",
+        method: "POST",
+        data: {
+            "email": user_email,
+            "team": selected_id,
+            "spot": '31',
+            "action": 'save_pick',
+        }
+    });
+
 }
