@@ -323,7 +323,7 @@
             <div class="your-team-name">
                 <div class="margin-auto">
                     <strong>Your Team Name:</strong><br/>
-                    <input type="text" name="Team Name">
+                    <strong>{{ user.team_name }}</strong>
                 </div>
 
             </div>
