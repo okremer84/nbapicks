@@ -31,6 +31,8 @@ next_spot[28] = 30;
 next_spot[29] = 30;
 
 $(document).ready(function(){
+    $('[data-sidenav]').sidenav();
+    show_sidebar();
 
     // click handler for a pick that is populated (it's populated when it has the data-team attribute)
     $(".pick[data-team]").on("click.pick_made", function(){
@@ -47,15 +49,54 @@ $(document).ready(function(){
     }).done(function (picks) {
         populate_bracket(($.parseJSON(picks))[0]);
     });
-
 });
+
+function show_sidebar() {
+    $.ajax({
+        url: "/api/api_handler.php",
+        method: "POST",
+        data: {
+            "action": "get_sidebar"
+        }
+    }).done(function(sidebar) {
+        $("#sidebar_main").html(sidebar);
+    });
+}
+
+function populate_global() {
+    $.ajax({
+        url: "/api/api_handler.php",
+        method: "POST",
+        data: {
+            "action": "get_global"
+        }
+    }).done(function(group_html) {
+        $("#sidebar_main").html(group_html);
+    });
+}
+
+function populate_group_view(target) {
+    $.ajax({
+        url: "/api/api_handler.php",
+        method: "POST",
+        data: {
+            "action": "get_group_data",
+            "group_id": $(target)[0].dataset.groupId,
+        }
+    }).done(function(group_view_html) {
+        $("#sidebar_main").html(group_view_html);
+    });
+}
+
+function show_user_picks() {
+    alert("You can only view brackets after the submission period ended (4/14 3PM EST)");
+}
 
 function populate_bracket(picks){
     for (var key in picks) {
         if(key.startsWith("spot_")){
             var spot = key.substr(5);
             var team = picks[key];
-            console.log(spot, team);
             if(team) {
                 fill_spot(spot, team);
             }

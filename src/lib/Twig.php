@@ -4,7 +4,7 @@ class Twig
 {
     private static $twig_environment = null;
 
-    private static function connect_twig($options = array())
+    private static function connect_twig()
     {
 
         $root_dir = realpath(__DIR__ . '..' . DIRECTORY_SEPARATOR);
@@ -12,7 +12,11 @@ class Twig
             return self::$twig_environment;
         }
 
-        $loader = new Twig_Loader_Filesystem($root_dir . "tpl");
+        try {
+            $loader = new Twig_Loader_Filesystem($root_dir . "tpl");
+        } catch (Twig_Error_Loader $e) {
+            $loader = new Twig_Loader_Filesystem($root_dir . "../tpl");
+        }
         $twig = new Twig_Environment($loader, array(
             'cache' => $root_dir . "tmp",
             'auto_reload' => true,

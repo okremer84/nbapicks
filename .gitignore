@@ -1,5 +1,6 @@
 .idea/
 src/tmp/
+src/api/tmp/
 src/inc/config.php
 .DS_Store
 srcdir.txt
