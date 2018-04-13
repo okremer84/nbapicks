@@ -164,6 +164,7 @@ function send_mvp() {
 }
 
 function populate_mvp_dropdown(players){
+    $("#mvp_dropdown").empty();
     for (var i = 0, len = players.length; i < len; i++) {
         player_data = players[i];
         player = "<option value='" + player_data['id'] + "'>" + player_data['name'] + "</option>";
