@@ -3,6 +3,7 @@
 session_start();
 require_once '../vendor/autoload.php';
 require_once '../lib/DB.php';
+require_once '../lib/Twig.php';
 require_once '../inc/config.php';
 
 $action = $_POST['action'];
@@ -166,6 +167,99 @@ if ($action == "save_login") {
 
     $picks = $stmt->fetchAll();
     echo json_encode($picks);
+} elseif ($_POST['action'] == 'get_side_groups') {
+    if (empty($_SESSION['user_id'])) {
+        echo "failed";
+        die();
+    }
+    $db = DB::get_db();
+    $stmt = $db->prepare('
+                SELECT 
+                    g.id, g.name 
+                FROM
+                    fan_group_user gu
+                        JOIN
+                    fan_group g ON g.id = gu.fan_group_id
+                        JOIN
+                    user u ON u.id = gu.user_id
+                    WHERE user_id = :user_id');
+    try {
+        $stmt->execute([':user_id' => $_SESSION['user_id']]);
+    } catch (PDOException $e) {
+        trigger_error($e->getMessage(), E_USER_WARNING);
+        die();
+    }
+
+    $args['group_data'] = $stmt->fetchAll();
+    echo Twig::render_template('groups.tpl', $args);
+} elseif ($_POST['action'] == 'get_global') {
+    $db = DB::get_db();
+    $stmt = $db->prepare('
+                SELECT 
+                    team_name, score
+                FROM
+                    user
+                LIMIT 10');
+    try {
+        $stmt->execute();
+    } catch (PDOException $e) {
+        trigger_error($e->getMessage(), E_USER_WARNING);
+        die();
+    }
+
+    $args['group_data'] = $stmt->fetchAll();
+    echo Twig::render_template('global.tpl', $args);
+} elseif ($_POST['action'] == 'get_sidebar') {
+    echo '<ul class="sidenav-menu">
+            <li>
+                <a href="javascript:;" onclick="populate_groups()">
+                    <span class="sidenav-link-icon"><i class="material-icons">group</i></span>
+                    <span class="sidenav-link-title">Groups</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;" onclick="populate_global()">
+                    <span class="sidenav-link-icon"><i class="material-icons">public</i></span>
+                    <span class="sidenav-link-title" id="global_sidebar">Global</span>
+                </a>
+            </li>
+        </ul>';
+} elseif ($_POST['action'] == 'get_group_data') {
+    if (empty($_SESSION['user_id']) || empty($_POST['group_id'])) {
+        echo "failed";
+        die();
+    }
+    $db = DB::get_db();
+    $stmt = $db->prepare("SELECT 1 FROM fan_group_user WHERE user_id = :user_id AND fan_group_id = :group_id");
+    $stmt->execute([
+        ':user_id' => $_SESSION['user_id'],
+        ':group_id' => $_POST['group_id'],
+    ]);
+
+    if (empty($stmt->fetchColumn())) {
+        echo "unauthorized";
+        die();
+    }
+    $stmt = $db->prepare('
+                SELECT 
+                    u.id, u.team_name, g.name group_name, u.score
+                FROM
+                    fan_group_user gu
+                        JOIN
+                    fan_group g ON g.id = gu.fan_group_id
+                        JOIN
+                    user u ON u.id = gu.user_id
+                    WHERE g.id = :group_id
+                    ORDER BY score DESC');
+    try {
+        $stmt->execute([':group_id' => $_POST['group_id']]);
+    } catch (PDOException $e) {
+        trigger_error($e->getMessage(), E_USER_WARNING);
+        die();
+    }
+
+    $args['group_data'] = $stmt->fetchAll();
+    echo Twig::render_template('group_view.tpl', $args);
 } else {
     echo "failed";
     die();

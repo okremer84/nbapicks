@@ -4,6 +4,10 @@
     <title>NBA Playoffs</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
     <script src="js/bracket.js"></script>
+    <link rel="stylesheet" href="js/sidenav.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <script src="js/sidenav.min.js"></script>
     <script>user_email = "{{ user.email }}"</script>
     <style>
         body {
@@ -331,6 +335,10 @@
 </head>
 
 <body>
+{% include 'sidebar.tpl' %}
+<a href="javascript:;" class="toggle" id="sidenav-toggle">
+    <i class="material-icons">menu</i>
+</a>
 <div class="info-overlay">
     <div class="top-overlay">
         <div class="left-text">
@@ -812,5 +820,4 @@
 
 
 </body>
-
 </html>
