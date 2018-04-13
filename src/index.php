@@ -27,6 +27,17 @@ if (empty($_SESSION['email'])) {
         $tpl = 'bracket.tpl';
         $_SESSION['team_name'] = $team_name;
         $args['user']['team_name'] = $team_name;
+        if (empty($_SESSION['user_id'])) {
+            $db = DB::get_db();
+            $stmt = $db->prepare('SELECT id FROM user WHERE email = :email');
+            try {
+                $stmt->execute([':email' => $_SESSION['email']]);
+            } catch (PDOException $e) {
+                trigger_error($e->getMessage(), E_USER_WARNING);
+                $tpl = 'error.tpl';
+            }
+            $_SESSION['user_id'] = $stmt->fetchColumn();
+        }
     }
 } elseif (!empty($_SESSION['team_name'])) {
     if (empty($_SESSION['user_id'])) {
