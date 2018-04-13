@@ -32,6 +32,7 @@ next_spot[29] = 30;
 
 $(document).ready(function(){
     $('[data-sidenav]').sidenav();
+    show_sidebar();
 
     // click handler for a pick that is populated (it's populated when it has the data-team attribute)
     $(".pick[data-team]").on("click.pick_made", function(){
@@ -59,18 +60,6 @@ function show_sidebar() {
         }
     }).done(function(sidebar) {
         $("#sidebar_main").html(sidebar);
-    });
-}
-
-function populate_groups() {
-    $.ajax({
-        url: "/api/api_handler.php",
-        method: "POST",
-        data: {
-            "action": "get_side_groups"
-        }
-    }).done(function(group_html) {
-        $("#sidebar_main").html(group_html);
     });
 }
 

@@ -167,7 +167,24 @@ if ($action == "save_login") {
 
     $picks = $stmt->fetchAll();
     echo json_encode($picks);
-} elseif ($_POST['action'] == 'get_side_groups') {
+} elseif ($_POST['action'] == 'get_global') {
+    $db = DB::get_db();
+    $stmt = $db->prepare('
+                SELECT 
+                    team_name, score
+                FROM
+                    user
+                LIMIT 10');
+    try {
+        $stmt->execute();
+    } catch (PDOException $e) {
+        trigger_error($e->getMessage(), E_USER_WARNING);
+        die();
+    }
+
+    $args['group_data'] = $stmt->fetchAll();
+    echo Twig::render_template('global.tpl', $args);
+} elseif ($_POST['action'] == 'get_sidebar') {
     if (empty($_SESSION['user_id'])) {
         echo "failed";
         die();
@@ -191,39 +208,7 @@ if ($action == "save_login") {
     }
 
     $args['group_data'] = $stmt->fetchAll();
-    echo Twig::render_template('groups.tpl', $args);
-} elseif ($_POST['action'] == 'get_global') {
-    $db = DB::get_db();
-    $stmt = $db->prepare('
-                SELECT 
-                    team_name, score
-                FROM
-                    user
-                LIMIT 10');
-    try {
-        $stmt->execute();
-    } catch (PDOException $e) {
-        trigger_error($e->getMessage(), E_USER_WARNING);
-        die();
-    }
-
-    $args['group_data'] = $stmt->fetchAll();
-    echo Twig::render_template('global.tpl', $args);
-} elseif ($_POST['action'] == 'get_sidebar') {
-    echo '<ul class="sidenav-menu">
-            <li>
-                <a href="javascript:;" onclick="populate_groups()">
-                    <span class="sidenav-link-icon"><i class="material-icons">group</i></span>
-                    <span class="sidenav-link-title">Groups</span>
-                </a>
-            </li>
-            <li>
-                <a href="javascript:;" onclick="populate_global()">
-                    <span class="sidenav-link-icon"><i class="material-icons">public</i></span>
-                    <span class="sidenav-link-title" id="global_sidebar">Global</span>
-                </a>
-            </li>
-        </ul>';
+    echo Twig::render_template('sidebar_content.tpl', $args);
 } elseif ($_POST['action'] == 'get_group_data') {
     if (empty($_SESSION['user_id']) || empty($_POST['group_id'])) {
         echo "failed";

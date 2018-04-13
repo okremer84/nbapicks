@@ -15,7 +15,7 @@
         <input type="text" value="https://www.nbaplayoffpicks.com/new_group.php?group={{ group_data[0].group_name }}">
     </div>
     <li>
-        <a href="javascript:;" onclick="populate_groups()">
+        <a href="javascript:;" onclick="show_sidebar()">
             <span class="sidenav-link-icon"><i class="material-icons">arrow_back</i></span>
             <span class="sidenav-link-title go_back" data-back-loc="groups">Back</span>
         </a>
