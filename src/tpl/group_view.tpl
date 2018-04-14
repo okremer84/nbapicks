@@ -4,7 +4,7 @@
 <ul class="sidenav-menu">
     {% for user_data in group_data %}
         <li>
-            <a href="javascript:;" onclick="show_user_picks()" data-user-id="{{ user_data.id }}">
+            <a href="javascript:;" onclick="show_user_picks({{ user_data.id }})" data-user-id="{{ user_data.id }}">
                 <span class="sidenav-link-icon">{{ user_data.score }}</span>
                 <span class="sidenav-link-title user_link">{{ user_data.team_name }}</span>
             </a>
