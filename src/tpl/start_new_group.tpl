@@ -28,7 +28,7 @@
             padding: 20px;
             background-color: #f5f5f5;
             max-width: 300px;
-            margin: 0 auto;
+            margin: 20px auto;
         }
 
         @media (max-width:767px) {
