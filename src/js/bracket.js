@@ -35,9 +35,10 @@ $(document).ready(function(){
     show_sidebar();
 
     // click handler for a pick that is populated (it's populated when it has the data-team attribute)
-    $(".pick[data-team]").on("click.pick_made", function(){
-        handle_spot_clicked($(this));
-    });
+    // Done!
+    // $(".pick[data-team]").on("click.pick_made", function(){
+    //     handle_spot_clicked($(this));
+    // });
 
     $.ajax({
         url: "/api/api_handler.php",
@@ -88,11 +89,28 @@ function populate_group_view(target) {
     });
 }
 
-function show_user_picks() {
-    alert("You can only view brackets after the submission period ended (4/14 3PM EST)");
+function show_user_picks(user_id) {
+    $.ajax({
+        url: "/api/api_handler.php",
+        method: "POST",
+        data: {
+            "action": 'get_picks',
+            "user_id": user_id
+        }
+    }).done(function (picks) {
+        populate_bracket(($.parseJSON(picks))[0]);
+    });
 }
 
 function populate_bracket(picks){
+    if (user_team_name != picks.team_name) {
+        $("#team_name").html("<strong>Showing:</strong><br/>\n" +
+            "                    <strong>" + picks.team_name + "</strong>" +
+            "<br/><a href='javascript:;' onclick='show_user_picks()'>Back to mine</a>");
+    } else {
+        $("#team_name").html("<strong>Your Team Name:</strong><br/>\n" +
+            "                    <strong>" + user_team_name + "</strong>");
+    }
     for (var key in picks) {
         if(key.startsWith("spot_")){
             var spot = key.substr(5);
@@ -132,11 +150,11 @@ function fill_spot(spot, team){
     $insert_spot.find(".team-logo").html("<img src='" + logo_url + "'>");
     $insert_spot.find(".team-name").html(team);
 
-    // add click handler on the spot
-    $insert_spot.off("click.pick_made");
-    $insert_spot.on("click.pick_made", function(){
-        handle_spot_clicked($(this));
-    });
+    // add click handler on the spot - Not anymore!
+    // $insert_spot.off("click.pick_made");
+    // $insert_spot.on("click.pick_made", function(){
+    //     handle_spot_clicked($(this));
+    // });
 }
 
 function handle_spot_clicked($spot){

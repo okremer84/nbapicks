@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
     <script src="js/sidenav.min.js"></script>
-    <script>user_email = "{{ user.email }}"</script>
+    <script>user_email = "{{ user.email }}"; user_team_name = "{{ user.team_name }}"</script>
     <style>
         body {
             font-family: arial, helvetica, sans-serif;
@@ -362,7 +362,7 @@
         <div class="center-text">
             <img src="https://www.nbaplayoffpicks.com/images/nba_playoffs.png"/>
             <div class="your-team-name">
-                <div class="margin-auto">
+                <div class="margin-auto" id="team_name">
                     <strong>Your Team Name:</strong><br/>
                     <strong>{{ user.team_name }}</strong>
                 </div>
@@ -821,7 +821,7 @@
                     </span>
                 </div>
                 <strong>Finals MVP</strong><br/>
-                <select id="mvp_dropdown" onchange="send_mvp(); return false;">
+                <select id="mvp_dropdown" disabled onchange="send_mvp(); return false;">
                     <option disabled selected>Choose finals MVP</option>
                 </select>
             </div>

@@ -65,6 +65,8 @@ if ($action == "save_login") {
         die();
     }
 } elseif ($_POST['action'] == 'save_pick') {
+    echo "times up";
+    die();
     if (empty($_SESSION['user_id']) || empty($_SESSION['email'])) {
         echo "logged_out";
         die();
@@ -125,13 +127,18 @@ if ($action == "save_login") {
         die();
     }
 
+    $user_id = $_SESSION['user_id'];
+    if (!empty($_POST['user_id'])) {
+        $user_id = $_POST['user_id'];
+    }
+
     $db = DB::get_db();
 
     // Yeah I know, I used *
-    $stmt = $db->prepare('SELECT * FROM pick WHERE user_id = :user_id');
+    $stmt = $db->prepare('SELECT * FROM pick p join user u ON p.user_id = u.id WHERE user_id = :user_id');
     try {
         $stmt->execute([
-            ':user_id' => $_SESSION['user_id'],
+            ':user_id' => $user_id,
         ]);
     } catch (PDOException $e) {
         trigger_error($e->getMessage(), E_USER_WARNING);
@@ -171,7 +178,7 @@ if ($action == "save_login") {
     $db = DB::get_db();
     $stmt = $db->prepare('
                 SELECT 
-                    team_name, score
+                    team_name, score, id
                 FROM
                     user
                 LIMIT 10');
