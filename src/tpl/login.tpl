@@ -1,5 +1,6 @@
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     {% include 'header.tpl' %}
     <title>NBA Playoff Picks</title>
     <style>
@@ -26,10 +27,17 @@
             border: 1px solid #AAA;
             padding: 20px;
             background-color: #f5f5f5;
-            width: 300px;
+            max-width: 300px;
             margin: 0 auto;
         }
-
+        @media (max-width:767px) {
+            .login-box {
+                width:80%;
+            }
+            .home-wrapper img.logo {
+                width:80%;
+            }
+        }
     </style>
 </head>
 <body>
