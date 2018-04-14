@@ -20,13 +20,14 @@
 }
 
 .sidenav-brand {
-    background: #FF5722;
-    border-bottom: 1px solid #FF7043;
+    background: #006bb7;
+    border-bottom: 1px solid #134f79;
     color: #FAFAFA;
-    font-size: 24px;
+    font-size: 16px;
+    line-height: normal;
+    text-transform: uppercase;
     font-weight: 700;
-    line-height: 32px;
-    padding: 20px 24px 19px
+    padding: 20px 10px;
 }
 
 .sidenav-dropdown, .sidenav-header {
@@ -37,9 +38,9 @@
 .sidenav-header {
     background: 0 0;
     color: #757575;
-    font-size: 19.2px;
-    line-height: 32px;
-    padding: 16px 24px 15px
+    font-size: 16px;
+    line-height: normal;
+    padding: 20px 10px;
 }
 
 .sidenav-header small {
@@ -68,10 +69,11 @@
 .sidenav-menu a {
     background: 0 0;
     color: #BDBDBD;
+    line-height: normal;
     display: block;
-    line-height: 24px;
-    padding: 16px 32px;
-    text-decoration: none
+    font-size: 14px;
+    padding: 20px 10px;
+    text-decoration: none;
 }
 
 .sidenav-menu a:hover {
@@ -93,7 +95,7 @@
 
 .sidenav-link-title {
     display: block;
-    padding: 0 16px 0 40px
+    padding: 0 16px 0 45px;
 }
 
 .sidenav-dropdown {

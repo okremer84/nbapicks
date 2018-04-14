@@ -1,5 +1,6 @@
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     {% include 'header.tpl' %}
     <title>NBA Playoff Picks</title>
     <style>
@@ -26,10 +27,18 @@
             border: 1px solid #AAA;
             padding: 20px;
             background-color: #f5f5f5;
-            width: 500px;
+            max-width: 300px;
             margin: 0 auto;
         }
 
+        @media (max-width:767px) {
+            .login-box {
+                width:80%;
+            }
+            .home-wrapper img.logo {
+                width:80%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -44,7 +53,7 @@
             <span>Can't add you to this group, please check the link</span>
         {% elseif new_group_url is empty %}
             <form method="POST" action="/new_group.php">
-                <label for="group_name">Submit your group name:</label>
+                <label for="group_name">Submit your group name:</label><br/><br/>
                 <input name="group_name" type="text" required>
                 <input type="hidden" name="action" value="submit_group_name">
                 <input type="submit">

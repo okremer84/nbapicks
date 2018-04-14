@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>NBA Playoffs</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
     <script src="js/bracket.js"></script>
@@ -243,6 +244,7 @@
         .team-name {
             vertical-align: middle;
             font-weight: bold;
+            margin-left: 5px;
         }
 
         .team-logo img {
@@ -330,6 +332,19 @@
             display: block;
             margin: 15px auto 0 auto;
             height: 30px;
+        }
+
+        a.toggle {
+            color: #006bb7;
+        }
+
+        a.toggle:hover {
+            color:#6fbef7
+        }
+
+        .sidenav-link-title.user_link {
+            position: relative;
+            top: -3px;
         }
     </style>
 </head>
