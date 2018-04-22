@@ -20,7 +20,7 @@ function update_winner($team_name, $spot) {
             ':user_id' => $id,
         ]);
 
-        $update_stmt = $db->prepare("UPDATE user SET score = score + 10 WHERE user_id = :user_id");
+        $update_stmt = $db->prepare("UPDATE user SET score = score + 10 WHERE id = :user_id");
         $update_stmt->execute([
             ':user_id' => $id,
         ]);
