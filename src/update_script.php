@@ -7,7 +7,6 @@ require_once('lib/DB.php');
 function update_winner($team_name, $spot) {
     $db = DB::get_db();
     // Update winning team
-    $team_name = "NOP";
 
     $stmt = $db->prepare("SELECT user_id FROM pick WHERE spot_$spot = :team_name");
     $stmt->execute([
@@ -17,6 +16,11 @@ function update_winner($team_name, $spot) {
 
     foreach ($user_ids as $id) {
         $update_stmt = $db->prepare("UPDATE pick_results SET spot_{$spot}_correct = '1' WHERE user_id = :user_id");
+        $update_stmt->execute([
+            ':user_id' => $id,
+        ]);
+
+        $update_stmt = $db->prepare("UPDATE user SET score = score + 10 WHERE user_id = :user_id");
         $update_stmt->execute([
             ':user_id' => $id,
         ]);
