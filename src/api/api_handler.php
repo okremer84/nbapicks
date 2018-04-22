@@ -195,6 +195,7 @@ if ($action == "save_login") {
                     team_name, score, id
                 FROM
                     user
+                ORDER BY score DESC
                 LIMIT 10');
     try {
         $stmt->execute();
@@ -220,7 +221,8 @@ if ($action == "save_login") {
                     fan_group g ON g.id = gu.fan_group_id
                         JOIN
                     user u ON u.id = gu.user_id
-                    WHERE user_id = :user_id');
+                    WHERE user_id = :user_id
+                    ORDER BY u.score DESC');
     try {
         $stmt->execute([':user_id' => $_SESSION['user_id']]);
     } catch (PDOException $e) {
