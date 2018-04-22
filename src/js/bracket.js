@@ -112,17 +112,18 @@ function populate_bracket(picks){
             "                    <strong>" + user_team_name + "</strong>");
     }
     for (var key in picks) {
-        if(key.startsWith("spot_")){
+        if(key.startsWith("spot_") && !key.includes('correct')){
             var spot = key.substr(5);
+            var correct = picks[key + '_correct'];
             var team = picks[key];
             if(team) {
-                fill_spot(spot, team);
+                fill_spot(spot, team, correct);
             }
         }
     }
 }
 
-function fill_spot(spot, team){
+function fill_spot(spot, team, correct){
     if(spot == "31"){
         // Get championship pick
         var champion_pick = $(".champion-pick").attr("data-team");
@@ -149,6 +150,13 @@ function fill_spot(spot, team){
     $insert_spot.attr("data-team", team);
     $insert_spot.find(".team-logo").html("<img src='" + logo_url + "'>");
     $insert_spot.find(".team-name").html(team);
+    $insert_spot.removeClass('win');
+    $insert_spot.removeClass('lose');
+    if (correct === '1') {
+        $insert_spot.addClass('win');
+    } else if (correct === '0') {
+        $insert_spot.addClass('lose');
+    }
 
     // add click handler on the spot - Not anymore!
     // $insert_spot.off("click.pick_made");

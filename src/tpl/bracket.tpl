@@ -78,7 +78,7 @@
         .pick.win {
           background-color: #B8F2B8;
         }
-        .pick.loss {
+        .pick. {
           background-color: #F2B8B8;
         }
          */
@@ -346,6 +346,22 @@
             position: relative;
             top: -3px;
         }
+
+        .win {
+            color: #0c940c;
+        }
+
+        .lose {
+            color: #c12a2a;
+            text-decoration: line-through;
+        }
+        
+        .game-score {
+            float: right;
+            position: relative;
+            top: 10px;
+            left: -5px;
+        }
     </style>
 </head>
 
@@ -381,7 +397,7 @@
             <div class="top-left">
                 <div class="round r-of-4">
                     <div class="bracket-game">
-                        <div class="pick top win" data-team="HOU" data-spot="0">
+                        <div class="pick top" data-team="HOU" data-spot="0">
 							<span class="tiny-number">
 								[1]
 							</span>
@@ -391,9 +407,10 @@
                             <span class="team-name">
 								 HOU
 							</span>
+                            <span class="game-score" id="score_spot_0">{% if series_score[0] is not empty %}{{ series_score[0] }}{% endif %}</span>
 
                         </div>
-                        <div class="pick bot loss" data-team="MIN" data-spot="1">
+                        <div class="pick bot " data-team="MIN" data-spot="1">
 						  <span class="tiny-number">
 								[8]
 							</span>
@@ -403,10 +420,11 @@
                             <span class="team-name">
 								 MIN
 							</span>
+                            <span class="game-score" id="score_spot_1">{% if series_score[1] != '0' %}{{ series_score[1] }}{% endif %}</span>
                         </div>
                     </div>
                     <div class="bracket-game cont">
-                        <div class="pick top loss" data-team="OKC" data-spot="2">
+                        <div class="pick top " data-team="OKC" data-spot="2">
 						  	<span class="tiny-number">
 								[4]
 							</span>
@@ -416,8 +434,9 @@
                             <span class="team-name">
 								 OKC
 							</span>
+                            <span class="game-score" id="score_spot_2">{% if series_score[2] != '0' %}{{ series_score[2] }}{% endif %}</span>
                         </div>
-                        <div class="pick bot win" data-team="UTA" data-spot="3">
+                        <div class="pick bot" data-team="UTA" data-spot="3">
 						  	<span class="tiny-number">
 								[5]
 							</span>
@@ -427,6 +446,7 @@
                             <span class="team-name">
 								 UTA
 							</span>
+                            <span class="game-score" id="score_spot_3">{% if series_score[3] != '0' %}{{ series_score[3] }}{% endif %}</span>
                         </div>
                     </div>
                 </div>
@@ -442,21 +462,23 @@
                 </div>
                 <div class="round r-of-2">
                     <div class="bracket-game">
-                        <div class="pick top loss" data-spot="16">
+                        <div class="pick top " data-spot="16">
 							<span class="tiny-number">
 							</span>
                             <div class="team-logo">
                             </div>
                             <span class="team-name">
 							</span>
+                            <span class="game-score" id="score_spot_16">{% if series_score[16] is not empty %}{{ series_score[16] }}{% endif %}</span>
                         </div>
-                        <div class="pick bot win" data-spot="17">
+                        <div class="pick bot" data-spot="17">
 							<span class="tiny-number">
                             </span>
                             <div class="team-logo">
                             </div>
                             <span class="team-name">
 							</span>
+                            <span class="game-score" id="score_spot_17">{% if series_score[17] is not empty %}{{ series_score[17] }}{% endif %}</span>
 
                         </div>
                     </div>
@@ -465,7 +487,7 @@
             <div class="bottom-left">
                 <div class="round r-of-4">
                     <div class="bracket-game">
-                        <div class="pick top win" data-team="POR" data-spot="4">
+                        <div class="pick top" data-team="POR" data-spot="4">
 						  <span class="tiny-number">
 								[3]
 							</span>
@@ -475,8 +497,9 @@
                             <span class="team-name">
 								 POR
 							</span>
+                            <span class="game-score" id="score_spot_4">{% if series_score[4] is not empty %}{{ series_score[4] }}{% endif %}</span>
                         </div>
-                        <div class="pick bot loss" data-team="NOP" data-spot="5">
+                        <div class="pick bot " data-team="NOP" data-spot="5">
 						  <span class="tiny-number">
 								[6]
 							</span>
@@ -486,10 +509,11 @@
                             <span class="team-name">
 								 NOP
 							</span>
+                            <span class="game-score" id="score_spot_5">{% if series_score[5] is not empty %}{{ series_score[5] }}{% endif %}</span>
                         </div>
                     </div>
                     <div class="bracket-game cont">
-                        <div class="pick top loss" data-team="GSW" data-spot="6">
+                        <div class="pick top " data-team="GSW" data-spot="6">
 						  	<span class="tiny-number">
 								[2]
 							</span>
@@ -499,8 +523,9 @@
                             <span class="team-name">
 								 GSW
 							</span>
+                            <span class="game-score" id="score_spot_6">{% if series_score[6] is not empty %}{{ series_score[6] }}{% endif %}</span>
                         </div>
-                        <div class="pick bot win" data-team="SAS" data-spot="7">
+                        <div class="pick bot" data-team="SAS" data-spot="7">
 						  	<span class="tiny-number">
 								[7]
 							</span>
@@ -510,6 +535,7 @@
                             <span class="team-name">
 								 SAS
 							</span>
+                            <span class="game-score" id="score_spot_7">{% if series_score[7] is not empty %}{{ series_score[7] }}{% endif %}</span>
                         </div>
                     </div>
                 </div>
@@ -525,21 +551,23 @@
                 </div>
                 <div class="round r-of-2">
                     <div class="bracket-game">
-                        <div class="pick top loss" data-spot="18">
+                        <div class="pick top " data-spot="18">
 							<span class="tiny-number">
 							</span>
                             <div class="team-logo">
                             </div>
                             <span class="team-name">
 							</span>
+                            <span class="game-score" id="score_spot_18">{% if series_score[18] is not empty %}{{ series_score[18] }}{% endif %}</span>
                         </div>
-                        <div class="pick bot win" data-spot="19">
+                        <div class="pick bot" data-spot="19">
 							<span class="tiny-number">
 							</span>
                             <div class="team-logo">
                             </div>
                             <span class="team-name">
 							</span>
+                            <span class="game-score" id="score_spot_19">{% if series_score[19] is not empty %}{{ series_score[19] }}{% endif %}</span>
                         </div>
                     </div>
                 </div>
@@ -560,63 +588,69 @@
             </div>
             <div class="center-row-wrap">
                 <div class="bracket-game center-row">
-                    <div class="pick top win" data-spot="24">
+                    <div class="pick top" data-spot="24">
 						<span class="tiny-number">
 						</span>
                         <div class="team-logo">
                         </div>
                         <span class="team-name">
 						</span>
+                        <span class="game-score" id="score_spot_24">{% if series_score[24] is not empty %}{{ series_score[24] }}{% endif %}</span>
                     </div>
-                    <div class="pick bot loss" data-spot="25">
+                    <div class="pick bot " data-spot="25">
 						<span class="tiny-number">
 						</span>
                         <div class="team-logo">
                         </div>
                         <span class="team-name">
 						</span>
-                    </div>
-                </div>
-                <div class="mid-line">
-                    <div class="bottom-line"></div>
-                </div>
-                <div class="bracket-game center-row">
-                    <div class="pick top win" data-spot="28">
-						<span class="tiny-number">
-						</span>
-                        <div class="team-logo">
-                        </div>
-                        <span class="team-name">
-						</span>
-                    </div>
-                    <div class="pick bot loss" data-spot="29">
-						<span class="tiny-number">
-						</span>
-                        <div class="team-logo">
-                        </div>
-                        <span class="team-name">
-						</span>
+                        <span class="game-score" id="score_spot_25">{% if series_score[25] is not empty %}{{ series_score[25] }}{% endif %}</span>
                     </div>
                 </div>
                 <div class="mid-line">
                     <div class="bottom-line"></div>
                 </div>
                 <div class="bracket-game center-row">
-                    <div class="pick top win" data-spot="26">
+                    <div class="pick top" data-spot="28">
 						<span class="tiny-number">
 						</span>
                         <div class="team-logo">
                         </div>
                         <span class="team-name">
 						</span>
+                        <span class="game-score" id="score_spot_28">{% if series_score[28] is not empty %}{{ series_score[28] }}{% endif %}</span>
                     </div>
-                    <div class="pick bot loss" data-spot="27">
+                    <div class="pick bot " data-spot="29">
 						<span class="tiny-number">
 						</span>
                         <div class="team-logo">
                         </div>
                         <span class="team-name">
 						</span>
+                        <span class="game-score" id="score_spot_29">{% if series_score[29] is not empty %}{{ series_score[29] }}{% endif %}</span>
+                    </div>
+                </div>
+                <div class="mid-line">
+                    <div class="bottom-line"></div>
+                </div>
+                <div class="bracket-game center-row">
+                    <div class="pick top" data-spot="26">
+						<span class="tiny-number">
+						</span>
+                        <div class="team-logo">
+                        </div>
+                        <span class="team-name">
+						</span>
+                        <span class="game-score" id="score_spot_26">{% if series_score[26] is not empty %}{{ series_score[26] }}{% endif %}</span>
+                    </div>
+                    <div class="pick bot " data-spot="27">
+						<span class="tiny-number">
+						</span>
+                        <div class="team-logo">
+                        </div>
+                        <span class="team-name">
+						</span>
+                        <span class="game-score" id="score_spot_27">{% if series_score[27] is not empty %}{{ series_score[27] }}{% endif %}</span>
                     </div>
                 </div>
             </div>
@@ -640,21 +674,23 @@
             <div class="top-right">
                 <div class="round r-of-2">
                     <div class="bracket-game">
-                        <div class="pick top loss" data-spot="20">
+                        <div class="pick top " data-spot="20">
 							<span class="tiny-number">
 							</span>
                             <div class="team-logo">
                             </div>
                             <span class="team-name">
 							</span>
+                            <span class="game-score" id="score_spot_20">{% if series_score[20] is not empty %}{{ series_score[20] }}{% endif %}</span>
                         </div>
-                        <div class="pick bot win" data-spot="21">
+                        <div class="pick bot" data-spot="21">
 							<span class="tiny-number">
 							</span>
                             <div class="team-logo">
                             </div>
                             <span class="team-name">
 							</span>
+                            <span class="game-score" id="score_spot_21">{% if series_score[21] is not empty %}{{ series_score[21] }}{% endif %}</span>
                         </div>
                     </div>
                 </div>
@@ -670,7 +706,7 @@
                 </div>
                 <div class="round r-of-4">
                     <div class="bracket-game">
-                        <div class="pick top loss" data-spot="8" data-team="TOR">
+                        <div class="pick top " data-spot="8" data-team="TOR">
 							<span class="tiny-number">
 								[1]
 							</span>
@@ -680,8 +716,9 @@
                             <span class="team-name">
 								 TOR
 							</span>
+                            <span class="game-score" id="score_spot_8">{% if series_score[8] is not empty %}{{ series_score[8] }}{% endif %}</span>
                         </div>
-                        <div class="pick bot win" data-spot="9" data-team="WAS">
+                        <div class="pick bot" data-spot="9" data-team="WAS">
 							<span class="tiny-number">
 								[8]
 							</span>
@@ -691,10 +728,11 @@
                             <span class="team-name">
 								 WAS
 							</span>
+                            <span class="game-score" id="score_spot_9">{% if series_score[9] is not empty %}{{ series_score[9] }}{% endif %}</span>
                         </div>
                     </div>
                     <div class="bracket-game cont">
-                        <div class="pick top loss" data-spot="10" data-team="CLE">
+                        <div class="pick top " data-spot="10" data-team="CLE">
 					  	<span class="tiny-number">
 							[4]
 						</span>
@@ -704,8 +742,9 @@
                             <span class="team-name">
 							 CLE
 						</span>
+                            <span class="game-score" id="score_spot_10">{% if series_score[10] is not empty %}{{ series_score[10] }}{% endif %}</span>
                         </div>
-                        <div class="pick bot win" data-spot="11" data-team="IND">
+                        <div class="pick bot" data-spot="11" data-team="IND">
 					  	<span class="tiny-number">
 							[5]
 						</span>
@@ -715,6 +754,7 @@
                             <span class="team-name">
 							 IND
 						</span>
+                            <span class="game-score" id="score_spot_11">{% if series_score[11] is not empty %}{{ series_score[11] }}{% endif %}</span>
                         </div>
                     </div>
                 </div>
@@ -722,21 +762,23 @@
             <div class="bottom-right">
                 <div class="round r-of-2">
                     <div class="bracket-game">
-                        <div class="pick top loss" data-spot="22">
+                        <div class="pick top " data-spot="22">
 							<span class="tiny-number">
 							</span>
                             <div class="team-logo">
                             </div>
                             <span class="team-name">
 							</span>
+                            <span class="game-score" id="score_spot_22">{% if series_score[22] is not empty %}{{ series_score[22] }}{% endif %}</span>
                         </div>
-                        <div class="pick bot win" data-spot="23">
+                        <div class="pick bot" data-spot="23">
 							<span class="tiny-number">
 							</span>
                             <div class="team-logo">
                             </div>
                             <span class="team-name">
 							</span>
+                            <span class="game-score" id="score_spot_23">{% if series_score[23] is not empty %}{{ series_score[23] }}{% endif %}</span>
                         </div>
                     </div>
                 </div>
@@ -752,7 +794,7 @@
                 </div>
                 <div class="round r-of-4">
                     <div class="bracket-game">
-                        <div class="pick top win" data-spot="12" data-team="PHI">
+                        <div class="pick top" data-spot="12" data-team="PHI">
 						  <span class="tiny-number">
 								[3]
 							</span>
@@ -762,8 +804,9 @@
                             <span class="team-name">
 								 PHI
 							</span>
+                            <span class="game-score" id="score_spot_12">{% if series_score[12] is not empty %}{{ series_score[12] }}{% endif %}</span>
                         </div>
-                        <div class="pick bot loss" data-spot="13" data-team="MIA">
+                        <div class="pick bot " data-spot="13" data-team="MIA">
 						  <span class="tiny-number">
 								[6]
 							</span>
@@ -773,10 +816,11 @@
                             <span class="team-name">
 								 MIA
 							</span>
+                            <span class="game-score" id="score_spot_13">{% if series_score[13] is not empty %}{{ series_score[13] }}{% endif %}</span>
                         </div>
                     </div>
                     <div class="bracket-game cont">
-                        <div class="pick top loss" data-spot="14" data-team="BOS">
+                        <div class="pick top " data-spot="14" data-team="BOS">
 					  	<span class="tiny-number">
 							[2]
 						</span>
@@ -786,8 +830,9 @@
                             <span class="team-name">
 							 BOS
 						</span>
+                            <span class="game-score" id="score_spot_14">{% if series_score[14] is not empty %}{{ series_score[14] }}{% endif %}</span>
                         </div>
-                        <div class="pick bot win" data-spot="15" data-team="MIL">
+                        <div class="pick bot" data-spot="15" data-team="MIL">
 					  	<span class="tiny-number">
 							[7]
 						</span>
@@ -797,6 +842,7 @@
                             <span class="team-name">
 							 MIL
 						</span>
+                            <span class="game-score" id="score_spot_15">{% if series_score[15] is not empty %}{{ series_score[15] }}{% endif %}</span>
                         </div>
                     </div>
                 </div>
@@ -819,6 +865,7 @@
                     </div>
                     <span class="team-name">
                     </span>
+                    <span class="game-score" id="score_spot_30">{% if series_score[30] is not empty %}{{ series_score[30] }}{% endif %}</span>
                 </div>
                 <strong>Finals MVP</strong><br/>
                 <select id="mvp_dropdown" disabled onchange="send_mvp(); return false;">

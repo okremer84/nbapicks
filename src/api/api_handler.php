@@ -135,7 +135,21 @@ if ($action == "save_login") {
     $db = DB::get_db();
 
     // Yeah I know, I used *
-    $stmt = $db->prepare('SELECT * FROM pick p join user u ON p.user_id = u.id WHERE user_id = :user_id');
+    $stmt = $db->prepare('SELECT 
+                                    spot_16, spot_17, spot_18, spot_19, spot_20, spot_21, spot_22,
+                                    spot_23, spot_24, spot_25, spot_26, spot_27, spot_28, spot_29, spot_30, spot_31,
+                                    spot_16_correct, spot_17_correct, spot_18_correct, spot_19_correct,
+                                    spot_20_correct, spot_21_correct, spot_22_correct, spot_23_correct, 
+                                    spot_24_correct, spot_25_correct, spot_26_correct, spot_27_correct,
+                                    spot_28_correct, spot_29_correct, spot_30_correct, spot_31_correct,
+                                    u.team_name
+                                FROM
+                                    pick p
+                                        JOIN
+                                    user u ON p.user_id = u.id
+                                        JOIN
+                                    pick_results pr ON pr.user_id = u.id
+                                WHERE p.user_id = :user_id');
     try {
         $stmt->execute([
             ':user_id' => $user_id,

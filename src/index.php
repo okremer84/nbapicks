@@ -97,4 +97,11 @@ if (empty($_SESSION['email'])) {
     $tpl = 'bracket.tpl';
 }
 
+if ($tpl == 'bracket.tpl') {
+    $db = DB::get_db();
+    $stmt = $db->prepare("SELECT score FROM series_score");
+    $stmt->execute();
+    $series_score = $stmt->fetchAll(PDO::FETCH_COLUMN);
+    $args['series_score'] = $series_score;
+}
 echo Twig::render_template($tpl, $args);
